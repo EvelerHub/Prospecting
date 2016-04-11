@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/animate.min.css" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/creative.css" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/footers" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/headers" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/unify/app.css" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/unify/blocks.css" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/unify/custom.css" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/unify/plugins" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/unify/style.css" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/favicon.ico" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/images/gh.ico" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/images/header-bg.jpg" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/images/logo_navbar_black.png" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/images/logo_navbar_white.png" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/images/prospect_example.png" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/images/slide-1.jpg" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/images/slide_1.jpg" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/img/header-bg.jpg" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/img/logo_navbar_black.png" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/img/patterns" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/img/prospect_example.png" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/js/creative.js" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/js/jquery.easing.min.js" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/js/jquery.fittext.js" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/js/wow.min.js" charset="windows-1251" />
+  </component>
+</project>

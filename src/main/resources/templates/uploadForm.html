@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="_csrf_parameter" content="_csrf" />
+    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
+    <meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
+</head>
+<body>
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/upload">
+        <table>
+            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+            <tr><td>Name:</td><td><input type="text" name="name" /></td></tr>
+            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
