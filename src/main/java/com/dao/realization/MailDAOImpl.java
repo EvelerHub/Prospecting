@@ -12,11 +12,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
+ * <p>MySQL DAO implementation.</p>
+ *
  * @author Alexander Eveler
  */
 @Repository
 public class MailDAOImpl implements MailDAO {
 
+    // TODO: 12.04.16 will be work with Logger
+    
     static Logger logger = LoggerFactory.getLogger(MailDAOImpl.class);
 
     @Autowired

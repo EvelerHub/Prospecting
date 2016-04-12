@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public class PlanDAOImpl implements PlanDAO {
 
+    // FIXME: 12.04.16 Make the transaction!
+
     @Autowired
     private SessionFactory sessionFactory;
 

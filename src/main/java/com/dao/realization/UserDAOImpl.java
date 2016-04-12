@@ -17,6 +17,9 @@ import java.util.List;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
+
+    // FIXME: 12.04.16 Make the transaction!
+
     static Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 
     @Autowired

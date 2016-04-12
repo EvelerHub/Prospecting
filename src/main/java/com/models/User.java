@@ -18,6 +18,8 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends BaseEntity implements Serializable, UserDetails {
 
+    // FIXME: 12.04.16 Entity must be serializable!
+
     @NotNull
     @NotEmpty
     @Size(max = 50)

@@ -16,6 +16,9 @@ import java.util.List;
 
 @Repository
 public class RoleDAOImpl implements RoleDAO {
+
+    // FIXME: 12.04.16 Make the transaction!
+
     static Logger logger = LoggerFactory.getLogger(RoleDAOImpl.class);
 
     @Autowired

@@ -9,6 +9,9 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass()
 public class BaseEntity {
+
+    // FIXME: 12.04.16 Entity must be serializable!
+    
     @Id
     @GeneratedValue
     @Column(name = "id")

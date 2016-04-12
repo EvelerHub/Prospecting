@@ -71,4 +71,5 @@ public class MailController {
         return new MailList(mails);
     }
 
+    // TODO: 12.04.16 Will be other links for Mail Table
 }

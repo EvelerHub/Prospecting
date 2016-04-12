@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * <p>Entity for the corresponding transformation in JSON.<p/>
+ *
  * @author Alexander Eveler
  */
 public class MailList implements Serializable {

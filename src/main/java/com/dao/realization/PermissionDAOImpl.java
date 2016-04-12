@@ -16,6 +16,9 @@ import java.util.List;
 
 @Repository
 public class PermissionDAOImpl implements PermissionDAO{
+
+    // FIXME: 12.04.16 Make the transaction!
+    
     static Logger logger = LoggerFactory.getLogger(PermissionDAOImpl.class);
 
     @Autowired

@@ -14,6 +14,8 @@ import java.util.Set;
 @Table(name = "roles")
 public class Role extends BaseEntity implements Serializable , GrantedAuthority {
 
+    // FIXME: 12.04.16 Entity must be serializable!
+
     @NotNull
     @NotEmpty
     @Size(max = 50)

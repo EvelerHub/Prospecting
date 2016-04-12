@@ -9,6 +9,8 @@ import java.util.Set;
 @Table(name = "plans")
 public class Plan extends BaseEntity implements Serializable{
 
+    // FIXME: 12.04.16 Entity must be serializable!
+
     @Column(name = "name")
     private String name;
 
