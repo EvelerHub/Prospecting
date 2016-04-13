@@ -22,12 +22,21 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
 
+    <!-- AdminLTE -->
+    <link type="text/css" rel="stylesheet" href="../static/css/AdminLTE.min.css"
+          data-th-href="@{/css/AdminLTE.min.css}"/>
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
 
-    <!-- Blocks style -->
-    <link type="text/css" rel="stylesheet" href="../static/css/unify/blocks.css"
-          data-th-href="@{/css/unify/blocks.css}"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css"
+          data-th-href="@{/dist/css/AdminLTE.min.css}"/>
+
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../static/dist/css/skins/_all-skins.min.css"
+          data-th-href="@{/dist/css/skins/_all-skins.min.css}"/>
 
     <!--Bootstrap Table style -->
     <link rel="stylesheet" href="../static/bootstrap-table/src/bootstrap-table.css"
@@ -44,50 +53,80 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <!--<![endif]-->
 </head>
-<body id="page-top">
-<div class="wrapper">
-    <div data-th-replace="fragments/cabinet :: cabinet"></div>
-    <div data-th-replace="fragments/profile_header :: profile_header"></div>
+<body class="sidebar-mini skin-black-light">
+<section class="wrapper">
+    <!-- Top menu -->
+    <div data-th-replace="fragments/header :: header"></div>
 
-    <div class="container">
-        <h1>Leads</h1>
-        <div id="toolbar">
-            <button id="remove" class="btn btn-info" disabled="">
-                <i class="glyphicon glyphicon-remove"></i> Delete
-            </button>
-            <button id="add" class="btn btn-info" disabled="">
-                <i class="glyphicon glyphicon-remove"></i> Add
-            </button>
-            <button id="update" class="btn btn-info" disabled="">
-                <i class="glyphicon glyphicon-remove"></i> Update
-            </button>
-        </div>
-        <table id="table"
-               data-toolbar="#toolbar"
-               data-search="true"
-               data-show-refresh="true"
-               data-show-toggle="true"
-               data-show-columns="true"
-               data-show-export="true"
-               data-detail-view="true"
-               data-detail-formatter="detailFormatter"
-               data-minimum-count-columns="2"
-               data-show-pagination-switch="true"
-               data-pagination="true"
-               data-id-field="id"
-               data-page-list="[10, 25, 50, 100, ALL]"
-               data-show-footer="false"
-               data-side-pagination="server"
-               data-url="mails/get_mails"
-               data-response-handler="responseHandler">
-        </table>
+    <!-- Left side column. contains the logo and sidebar -->
+    <div data-th-replace="fragments/sidebar :: sidebar"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="headline">
+                        <h4>Leads</h4>
+                    </div>
+                    <div class="tab-content">
+                        <div id="toolbar">
+                            <button id="remove" class="btn btn-info" disabled="">
+                                <i class="glyphicon glyphicon-remove"></i> Delete
+                            </button>
+                            <button id="add" class="btn btn-info" disabled="">
+                                <i class="glyphicon glyphicon-remove"></i> Add
+                            </button>
+                            <button id="update" class="btn btn-info" disabled="">
+                                <i class="glyphicon glyphicon-remove"></i> Update
+                            </button>
+                        </div>
+                        <table id="table"
+                               data-toolbar="#toolbar"
+                               data-search="true"
+                               data-show-refresh="true"
+                               data-show-toggle="true"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               data-detail-view="true"
+                               data-detail-formatter="detailFormatter"
+                               data-minimum-count-columns="2"
+                               data-show-pagination-switch="true"
+                               data-pagination="true"
+                               data-id-field="id"
+                               data-page-list="[10, 25, 50, 100, ALL]"
+                               data-show-footer="false"
+                               data-side-pagination="server"
+                               data-url="mails/get_mails"
+                               data-response-handler="responseHandler">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-
-</div>
+</section>
 
 <!--jQuery 2.1.4-->
 <script src="../static/js/jQuery-2.1.4.min.js"
         data-th-src="@{/js/jQuery-2.1.4.min.js}"></script>
+
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+
+<!-- AdminLTE App -->
+<script src="../static/dist/js/app.min.js"
+        data-th-src="@{/dist/js/app.min.js}"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="../static/dist/js/demo.js"
+        data-th-src="@{/dist/js/demo.js}"></script>
 
 <!-- Bootstrap 3.3.5 -->
 <script src="../static/js/bootstrap.min.js"

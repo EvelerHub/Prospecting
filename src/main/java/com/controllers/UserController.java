@@ -103,7 +103,7 @@ public class UserController {
         } catch (UserNotFoundException e) {
             e.printStackTrace();
         }
-        return "redirect:/account/profile";
+        return "redirect:/mails";
     }
 
     private Collection<GrantedAuthority> getAuthorities() {
