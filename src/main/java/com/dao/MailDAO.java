@@ -11,13 +11,13 @@ import java.util.List;
  */
 public interface MailDAO {
 
-    int addMail(Mail mail) throws RecordDuplicatedException;
+    Long addMail(Mail mail) throws RecordDuplicatedException;
 
-    Mail getMail(int id) throws RecordNotFoundException;
+    Mail getMail(long id) throws RecordNotFoundException;
 
     void updateMail(Mail mail) throws RecordNotFoundException;
 
-    void deleteMail(int id) throws RecordNotFoundException;
+    void deleteMail(long id) throws RecordNotFoundException;
 
     List<Mail> getMails();
 }

@@ -18,36 +18,40 @@ public class Mail implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id", length = 20, nullable = false)
-    private long id;
+    private Long id;
 
-    @NotNull
-    @NotEmpty
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
-    @NotNull
-    @NotEmpty
-    @Column(name = "surname", length = 255, nullable = false)
-    private String surname;
-
-    @NotNull
-    @NotEmpty
     @Column(name = "mail", length = 255, nullable = false)
     private String mail;
 
-    @NotNull
-    @NotEmpty
     @Column(name = "relevance", length = 3, precision = 2, nullable = false)
-    private double relevance;
+    private Double relevance;
+
+    @Column(name = "job", length = 3, precision = 2, nullable = false)
+    private String job;
+
+    @Column(name = "company_name", length = 3, precision = 2, nullable = false)
+    private String companyName;
+    
+    @Column(name = "company_link", length = 3, precision = 2, nullable = false)
+    private String companyLink;
 
     public Mail() {
     }
 
-    public Mail(String name, String surname, String mail, double relevance) {
+    public Mail(String name, String mail, double relevance, String job, String companyName, String companyLink) {
         this.name = name;
-        this.surname = surname;
         this.mail = mail;
         this.relevance = relevance;
+        this.job = job;
+        this.companyName = companyName;
+        this.companyLink = companyLink;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public long getId() {
@@ -66,14 +70,6 @@ public class Mail implements Serializable {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getMail() {
         return mail;
     }
@@ -90,32 +86,28 @@ public class Mail implements Serializable {
         this.relevance = relevance;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Mail mail1 = (Mail) o;
-
-        if (id != mail1.id) return false;
-        if (Double.compare(mail1.relevance, relevance) != 0) return false;
-        if (name != null ? !name.equals(mail1.name) : mail1.name != null) return false;
-        if (surname != null ? !surname.equals(mail1.surname) : mail1.surname != null) return false;
-        return mail != null ? mail.equals(mail1.mail) : mail1.mail == null;
-
+    public String getJob() {
+        return job;
     }
 
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (mail != null ? mail.hashCode() : 0);
-        temp = Double.doubleToLongBits(relevance);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyLink() {
+        return companyLink;
+    }
+
+    public void setCompanyLink(String companyLink) {
+        this.companyLink = companyLink;
     }
 
     @Override
@@ -123,9 +115,11 @@ public class Mail implements Serializable {
         return "Mail{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
                 ", mail='" + mail + '\'' +
                 ", relevance=" + relevance +
+                ", job='" + job + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", companyLink='" + companyLink + '\'' +
                 '}';
     }
 }

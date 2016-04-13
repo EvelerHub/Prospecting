@@ -53,80 +53,133 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <!--<![endif]-->
 </head>
-<body class="sidebar-mini skin-black-light">
-<section class="wrapper">
+<body class="skin-purple">
+<div>
     <!-- Top menu -->
-    <div data-th-replace="fragments/header :: header"></div>
-
-    <!-- Left side column. contains the logo and sidebar -->
-    <div data-th-replace="fragments/sidebar :: sidebar"></div>
+    <div data-th-replace="fragments/cabinet :: cabinet"></div>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="container">
         <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="headline">
-                        <h4>Leads</h4>
-                    </div>
-                    <div class="tab-content">
-                        <div id="toolbar">
-                            <button id="remove" class="btn btn-info" disabled="">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="headline">
+                    <h4>Leads</h4>
+                </div>
+                <div class="tab-content">
+                    <div id="toolbar">
+                        <div class="dt-buttons btn-group">
+                            <button id="add" class="btn btn-default buttons-create" tabindex="0"
+                                    aria-controls="example">
+                                <i class="glyphicon glyphicon-plus"></i> New Lead
+                            </button>
+                            <!--
+                            <button id="edit" class="btn btn-default buttons-selected buttons-edit" tabindex="0"
+                               aria-controls="example" disabled="">
+                                <span>Edit</span>
+                            </button>
+                            -->
+                            <button id="remove" class="btn btn-default buttons-selected buttons-remove" tabindex="0"
+                                    aria-controls="example" disabled="">
                                 <i class="glyphicon glyphicon-remove"></i> Delete
                             </button>
-                            <button id="add" class="btn btn-info" disabled="">
-                                <i class="glyphicon glyphicon-remove"></i> Add
-                            </button>
-                            <button id="update" class="btn btn-info" disabled="">
-                                <i class="glyphicon glyphicon-remove"></i> Update
-                            </button>
                         </div>
-                        <table id="table"
-                               data-toolbar="#toolbar"
-                               data-search="true"
-                               data-show-refresh="true"
-                               data-show-toggle="true"
-                               data-show-columns="true"
-                               data-show-export="true"
-                               data-detail-view="true"
-                               data-detail-formatter="detailFormatter"
-                               data-minimum-count-columns="2"
-                               data-show-pagination-switch="true"
-                               data-pagination="true"
-                               data-id-field="id"
-                               data-page-list="[10, 25, 50, 100, ALL]"
-                               data-show-footer="false"
-                               data-side-pagination="server"
-                               data-url="mails/get_mails"
-                               data-response-handler="responseHandler">
-                        </table>
                     </div>
+                    <table id="table"
+                           data-toolbar="#toolbar"
+                           data-search="true"
+                           data-show-refresh="true"
+                           data-show-toggle="true"
+                           data-show-columns="true"
+                           data-show-export="true"
+                           data-detail-view="true"
+                           data-detail-formatter="detailFormatter"
+                           data-minimum-count-columns="2"
+                           data-show-pagination-switch="true"
+                           data-pagination="true"
+                           data-id-field="id"
+                           data-page-list="[10, 25, 50, 100, ALL]"
+                           data-show-footer="false"
+                           data-side-pagination="server"
+                           data-url="mails/get_mails"
+                           data-response-handler="responseHandler">
+                    </table>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
-</section>
+
+    <div id="modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Add Lead</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="data-input-fields">
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    <input id="name" class="form-control" placeholder="name"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    <input id="surname" class="form-control" placeholder="surname"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                    <input id="e-mail" class="form-control" placeholder="e-mail"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-line-chart"></i>
+                                        </span>
+                                    <input id="relevance" class="form-control" placeholder="relevance"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-user-secret"></i>
+                                        </span>
+                                    <input id="job" class="form-control" placeholder="job"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-building"></i>
+                                        </span>
+                                    <input id="company-name" class="form-control" placeholder="company name"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-building"></i>
+                                        </span>
+                                    <input id="company-link" class="form-control" placeholder="company link"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" id="save" class="btn btn-primary">Save</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
 
 <!--jQuery 2.1.4-->
 <script src="../static/js/jQuery-2.1.4.min.js"
         data-th-src="@{/js/jQuery-2.1.4.min.js}"></script>
-
-<!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button);
-</script>
-
-<!-- AdminLTE App -->
-<script src="../static/dist/js/app.min.js"
-        data-th-src="@{/dist/js/app.min.js}"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="../static/dist/js/demo.js"
-        data-th-src="@{/dist/js/demo.js}"></script>
 
 <!-- Bootstrap 3.3.5 -->
 <script src="../static/js/bootstrap.min.js"

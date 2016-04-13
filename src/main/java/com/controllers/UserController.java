@@ -59,7 +59,7 @@ public class UserController {
             }
             if (rolename.equals("USER")) {
                 logger.info("Directing to home page for: [" + rolename + "]");
-                return "redirect:/account/profile";
+                return "redirect:/mails";
             }
         }
         return "index";
@@ -103,7 +103,7 @@ public class UserController {
         } catch (UserNotFoundException e) {
             e.printStackTrace();
         }
-        return "redirect:/mails";
+        return "redirect:/account/profile";
     }
 
     private Collection<GrantedAuthority> getAuthorities() {

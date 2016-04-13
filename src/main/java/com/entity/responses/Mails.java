@@ -1,4 +1,4 @@
-package com.entity;
+package com.entity.responses;
 
 import com.models.Mail;
 
@@ -10,18 +10,18 @@ import java.util.List;
  *
  * @author Alexander Eveler
  */
-public class MailList implements Serializable {
+public class Mails implements Serializable {
 
     private static final long serialVersionUID = 266899101846142520L;
 
     private long total;
     private List<Mail> rows;
 
-    public MailList() {
+    public Mails() {
         total = 0;
     }
 
-    public MailList(List<Mail> mails) {
+    public Mails(List<Mail> mails) {
         this.rows = mails;
         this.total = mails.size();
     }
@@ -51,10 +51,10 @@ public class MailList implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MailList mailList = (MailList) o;
+        Mails mails = (Mails) o;
 
-        if (total != mailList.total) return false;
-        return rows != null ? rows.equals(mailList.rows) : mailList.rows == null;
+        if (total != mails.total) return false;
+        return rows != null ? rows.equals(mails.rows) : mails.rows == null;
 
     }
 
@@ -67,7 +67,7 @@ public class MailList implements Serializable {
 
     @Override
     public String toString() {
-        return "MailList{" +
+        return "Mails{" +
                 "total=" + total +
                 ", rows=" + rows +
                 '}';

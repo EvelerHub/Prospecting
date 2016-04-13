@@ -27,14 +27,14 @@ public class MailDAOImpl implements MailDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public int addMail(Mail mail) {
+    public Long addMail(Mail mail) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        Integer mailId = 0;
+        Long mailId = 0L;
         try {
             transaction = session.beginTransaction();
 
-            mailId = (Integer) session.save(mail);
+            mailId = (Long) session.save(mail);
 
             transaction.commit();
         } catch (HibernateException e) {
@@ -50,7 +50,7 @@ public class MailDAOImpl implements MailDAO {
     }
 
     @Override
-    public Mail getMail(int id) throws RecordNotFoundException {
+    public Mail getMail(long id) throws RecordNotFoundException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         Mail mail = null;
@@ -102,7 +102,7 @@ public class MailDAOImpl implements MailDAO {
     }
 
     @Override
-    public void deleteMail(int id) throws RecordNotFoundException {
+    public void deleteMail(long id) throws RecordNotFoundException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         Mail foundMail = null;

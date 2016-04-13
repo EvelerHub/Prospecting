@@ -1,5 +1,8 @@
 ;var $table = $('#table'),
     $remove = $('#remove'),
+    $add = $('#add'),
+    $edit = $('#edit'),
+    $save = $('#save'),
     selections = [];
 
 function initTable() {
@@ -23,13 +26,6 @@ function initTable() {
             align: 'center',
             footerFormatter: totalTextFormatter
         }, {
-            field: 'surname',
-            title: 'Surname',
-            sortable: true,
-            editable: true,
-            align: 'center',
-            footerFormatter: totalTextFormatter
-        }, {
             field: 'mail',
             title: 'E-Mail',
             sortable: true,
@@ -39,6 +35,27 @@ function initTable() {
         }, {
             field: 'relevance',
             title: 'Relevance',
+            sortable: true,
+            editable: true,
+            align: 'center',
+            footerFormatter: totalTextFormatter
+        }, {
+            field: 'job',
+            title: 'Job Titile',
+            sortable: true,
+            editable: true,
+            align: 'center',
+            footerFormatter: totalTextFormatter
+        }, {
+            field: 'companyName',
+            title: 'Company',
+            sortable: true,
+            editable: true,
+            align: 'center',
+            footerFormatter: totalTextFormatter
+        }, {
+            field: 'companyLink',
+            title: 'Company link',
             sortable: true,
             editable: true,
             align: 'center',
@@ -62,12 +79,84 @@ function initTable() {
     });
     $remove.click(function () {
         var ids = getIdSelections();
-        $table.bootstrapTable('remove', {
-            field: 'id',
-            values: ids
-        });
-        $remove.prop('disabled', true);
+        console.log(JSON.stringify(ids));
+        var removeMail = function (id) {
+            $.ajax({
+                url: window.location.pathname + '/remove',
+                type: 'POST',
+                timeout: 10000,
+                crossDomain: true,
+                dataType: "json",
+                data: JSON.stringify(ids),
+                contentType: "application/json; charset=UTF-8",
+                beforeSend: function () {
+                    // TODO: should be some on before listener
+                },
+                error: function (request) {
+                    console.log(request);
+                },
+                success: function (request) {
+                    $table.bootstrapTable('remove', {
+                        field: 'id',
+                        values: ids
+                    });
+                    $remove.prop('disabled', true);
+                }
+            });
+        };
+
+        removeMail(ids);
     });
+    $add.click(function(){
+        $('#modal').modal('show');
+    });
+
+    $save.click(function(){
+        var mail = {};
+        mail.name = $('#name').val() + ' ' +$('#surname').val();
+        mail.mail = $('#e-mail').val();
+        mail.relevance = $('#relevance').val();
+        mail.job = $('#job').val();
+        mail.companyName = $('#company-name').val();
+        mail.companyLink = $('#company-link').val();
+
+        console.log(JSON.stringify(mail));
+        var addMail = function (mail) {
+            $.ajax({
+                url: window.location.pathname + '/add',
+                type: 'POST',
+                timeout: 10000,
+                crossDomain: true,
+                dataType: "json",
+                data: JSON.stringify(mail),
+                contentType: "application/json; charset=UTF-8",
+                beforeSend: function () {
+                    // TODO: should be some on before listener
+                },
+                error: function (request) {
+                    console.log(request);
+                },
+                success: function (request) {
+
+                    $table.bootstrapTable('insertRow', {
+                        index: $table.bootstrapTable('getData').length + 1,
+                        row: {
+                            id: request.id,
+                            name: mail.name,
+                            mail: mail.mail,
+                            relevance: mail.relevance,
+                            job: mail.job,
+                            companyName: mail.companyName,
+                            companyLink: mail.companyLink
+                        }
+                    });
+                }
+            });
+        };
+
+        addMail(mail);
+    });
+
     $(window).resize(function () {
         $table.bootstrapTable('resetView', {
             height: getHeight()
