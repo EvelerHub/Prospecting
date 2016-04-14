@@ -1,9 +1,9 @@
 package com.models;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.engine.spi.Mapping;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -23,6 +23,9 @@ public class Mail implements Serializable {
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
+    @Column(name = "surname", length = 255, nullable = false)
+    private String surname;
+
     @Column(name = "mail", length = 255, nullable = false)
     private String mail;
 
@@ -32,33 +35,44 @@ public class Mail implements Serializable {
     @Column(name = "job", length = 3, precision = 2, nullable = false)
     private String job;
 
-    @Column(name = "company_name", length = 3, precision = 2, nullable = false)
-    private String companyName;
-    
-    @Column(name = "company_link", length = 3, precision = 2, nullable = false)
-    private String companyLink;
+    @OneToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Mail() {
     }
 
-    public Mail(String name, String mail, double relevance, String job, String companyName, String companyLink) {
+    public Mail(String name, String surname, String mail,
+                Double relevance, String job, Company company, User user) {
         this.name = name;
+        this.surname = surname;
         this.mail = mail;
         this.relevance = relevance;
         this.job = job;
-        this.companyName = companyName;
-        this.companyLink = companyLink;
+        this.company = company;
+        this.user = user;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public Mail(String name, String surname, String mail,
+                Double relevance, String job, Company company) {
+        this.name = name;
+        this.surname = surname;
+        this.mail = mail;
+        this.relevance = relevance;
+        this.job = job;
+        this.company = company;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,6 +84,14 @@ public class Mail implements Serializable {
         this.name = name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public String getMail() {
         return mail;
     }
@@ -78,11 +100,11 @@ public class Mail implements Serializable {
         this.mail = mail;
     }
 
-    public double getRelevance() {
+    public Double getRelevance() {
         return relevance;
     }
 
-    public void setRelevance(double relevance) {
+    public void setRelevance(Double relevance) {
         this.relevance = relevance;
     }
 
@@ -94,32 +116,63 @@ public class Mail implements Serializable {
         this.job = job;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public String getCompanyLink() {
-        return companyLink;
+    public User getUser() {
+        return user;
     }
 
-    public void setCompanyLink(String companyLink) {
-        this.companyLink = companyLink;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Mail mail1 = (Mail) o;
+
+        if (id != null ? !id.equals(mail1.id) : mail1.id != null) return false;
+        if (name != null ? !name.equals(mail1.name) : mail1.name != null) return false;
+        if (surname != null ? !surname.equals(mail1.surname) : mail1.surname != null) return false;
+        if (mail != null ? !mail.equals(mail1.mail) : mail1.mail != null) return false;
+        if (relevance != null ? !relevance.equals(mail1.relevance) : mail1.relevance != null) return false;
+        if (job != null ? !job.equals(mail1.job) : mail1.job != null) return false;
+        if (company != null ? !company.equals(mail1.company) : mail1.company != null) return false;
+        return user != null ? user.equals(mail1.user) : mail1.user == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        result = 31 * result + (relevance != null ? relevance.hashCode() : 0);
+        result = 31 * result + (job != null ? job.hashCode() : 0);
+        result = 31 * result + (company != null ? company.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "Mail{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", mail='" + mail + '\'' +
-                ", relevance=" + relevance +
+                "user=" + user +
+                ", company=" + company +
                 ", job='" + job + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", companyLink='" + companyLink + '\'' +
+                ", relevance=" + relevance +
+                ", mail='" + mail + '\'' +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

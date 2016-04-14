@@ -20,7 +20,7 @@ import java.util.List;
 public class MailDAOImpl implements MailDAO {
 
     // TODO: 12.04.16 will be work with Logger
-    
+
     static Logger logger = LoggerFactory.getLogger(MailDAOImpl.class);
 
     @Autowired
@@ -102,16 +102,14 @@ public class MailDAOImpl implements MailDAO {
     }
 
     @Override
-    public void deleteMail(long id) throws RecordNotFoundException {
+    public Mail deleteMail(long id) throws RecordNotFoundException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         Mail foundMail = null;
         try {
             transaction = session.beginTransaction();
-
             foundMail = (Mail) session.get(Mail.class, id);
             session.delete(foundMail);
-
             transaction.commit();
         } catch (HibernateException e) {
             logger.error(e.getMessage());
@@ -124,6 +122,8 @@ public class MailDAOImpl implements MailDAO {
         } finally {
             session.close();
         }
+
+        return foundMail;
     }
 
     @Override

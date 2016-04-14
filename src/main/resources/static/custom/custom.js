@@ -107,13 +107,14 @@ function initTable() {
 
         removeMail(ids);
     });
-    $add.click(function(){
+    $add.click(function () {
         $('#modal').modal('show');
     });
 
-    $save.click(function(){
+    $save.click(function () {
         var mail = {};
-        mail.name = $('#name').val() + ' ' +$('#surname').val();
+        mail.name = $('#name').val();
+        mail.surname = $('#surname').val();
         mail.mail = $('#e-mail').val();
         mail.relevance = $('#relevance').val();
         mail.job = $('#job').val();
@@ -142,7 +143,7 @@ function initTable() {
                         index: $table.bootstrapTable('getData').length + 1,
                         row: {
                             id: request.id,
-                            name: mail.name,
+                            name: mail.name + ' ' + mail.surname,
                             mail: mail.mail,
                             relevance: mail.relevance,
                             job: mail.job,

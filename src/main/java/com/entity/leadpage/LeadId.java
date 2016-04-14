@@ -1,20 +1,20 @@
-package com.entity.responses;
+package com.entity.leadpage;
 
 import java.io.Serializable;
 
 /**
  * @author Alexander Eveler
  */
-public class Id implements Serializable {
+public class LeadId implements Serializable {
 
     private static final long serialVersionUID = 1741471547450309269L;
 
     private Long id;
 
-    public Id() {
+    public LeadId() {
     }
 
-    public Id(Long id) {
+    public LeadId(Long id) {
         this.id = id;
     }
 
@@ -28,7 +28,7 @@ public class Id implements Serializable {
 
     @Override
     public String toString() {
-        return "Id{" +
+        return "LeadId{" +
                 "id=" + id +
                 '}';
     }

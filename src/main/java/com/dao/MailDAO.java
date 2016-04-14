@@ -17,7 +17,7 @@ public interface MailDAO {
 
     void updateMail(Mail mail) throws RecordNotFoundException;
 
-    void deleteMail(long id) throws RecordNotFoundException;
+    Mail deleteMail(long id) throws RecordNotFoundException;
 
     List<Mail> getMails();
 }

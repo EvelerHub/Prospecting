@@ -12,13 +12,14 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity implements Serializable, UserDetails {
 
-    // FIXME: 12.04.16 Entity must be serializable!
+    private static final long serialVersionUID = 2740861780155026331L;
 
     @NotNull
     @NotEmpty
@@ -61,6 +62,9 @@ public class User extends BaseEntity implements Serializable, UserDetails {
     @ManyToOne
     @JoinColumn(name = "plan_id")
     private Plan plan;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Mail> mails;
 
     public User() {
     }
@@ -142,6 +146,14 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public List<Mail> getMails() {
+        return mails;
+    }
+
+    public void setMails(List<Mail> mails) {
+        this.mails = mails;
     }
 
     @Override
