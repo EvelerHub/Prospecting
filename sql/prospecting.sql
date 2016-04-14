@@ -10,10 +10,30 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-04-12 12:12:40
+Date: 2016-04-14 21:04:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for companies
+-- ----------------------------
+DROP TABLE IF EXISTS `companies`;
+CREATE TABLE `companies` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `link` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of companies
+-- ----------------------------
+INSERT INTO `companies` VALUES ('1', 'Google ', 'https://www.google.com/about/company/');
+INSERT INTO `companies` VALUES ('2', 'DataArt', 'http://www.dataart.ua/');
+INSERT INTO `companies` VALUES ('3', 'Sigma', 'http://ua.sigma.software/');
+INSERT INTO `companies` VALUES ('4', 'Arturchic', 'blabla.net');
+INSERT INTO `companies` VALUES ('6', 'asdf', 'asdf');
 
 -- ----------------------------
 -- Table structure for mails
@@ -23,17 +43,24 @@ CREATE TABLE `mails` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
+  `job` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
   `relevance` decimal(3,2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `company_id` bigint(20) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mails_ibfk_1` (`user_id`),
+  KEY `mails_ibfk_2` (`company_id`),
+  CONSTRAINT `mails_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `mails_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mails
 -- ----------------------------
-INSERT INTO `mails` VALUES ('1', 'Alex', 'M', 'qwe.asd@gmail.com', '0.54');
-INSERT INTO `mails` VALUES ('2', 'Eva', 'B', 'asd.qwe@mail.ru', '0.72');
-INSERT INTO `mails` VALUES ('3', 'Julia', 'G', 'Jul.g@yandex.ru', '0.99');
+INSERT INTO `mails` VALUES ('1', 'Alex', 'E', 'Programmer', 'qwe.asd@gmail.com', '0.54', '1', '15');
+INSERT INTO `mails` VALUES ('2', 'Eva', 'B', 'Programmer', 'asd.qwe@mail.ru', '0.72', '2', '15');
+INSERT INTO `mails` VALUES ('3', 'Julia', 'G', 'Designer', 'Jul.g@yandex.ru', '0.99', '3', '15');
 
 -- ----------------------------
 -- Table structure for permissions
@@ -116,22 +143,6 @@ CREATE TABLE `roles` (
 -- ----------------------------
 INSERT INTO `roles` VALUES ('1', 'ADMIN');
 INSERT INTO `roles` VALUES ('2', 'USER');
-
--- ----------------------------
--- Table structure for user_mail
--- ----------------------------
-DROP TABLE IF EXISTS `user_mail`;
-CREATE TABLE `user_mail` (
-  `user_id` int(11) NOT NULL,
-  `mail_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of user_mail
--- ----------------------------
-INSERT INTO `user_mail` VALUES ('15', '2');
-INSERT INTO `user_mail` VALUES ('15', '2');
-INSERT INTO `user_mail` VALUES ('15', '3');
 
 -- ----------------------------
 -- Table structure for user_roles
