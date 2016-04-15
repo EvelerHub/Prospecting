@@ -1,12 +1,19 @@
 package com.controllers;
 
+import com.constants.NewsletterConstants;
+import com.entity.ResponseMessage;
+import com.entity.changeProfile.Mail;
+import com.entity.changeProfile.Passwords;
+import com.entity.newsletter.Error;
+import com.entity.newsletter.Newsletter;
 import com.exeptions.RoleNotFoundException;
 import com.exeptions.UserNotFoundException;
 import com.models.Role;
 import com.models.User;
-import com.services.PlanService;
-import com.services.RoleService;
-import com.services.UserService;
+import com.services.database.PlanService;
+import com.services.database.RoleService;
+import com.services.database.UserService;
+import com.services.newsletter.NewsletterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +51,9 @@ public class UserController {
 
     @Autowired
     private PlanService planService;
+
+    @Autowired
+    private NewsletterService newsletterService;
 
     private User userToUpdate;
 
@@ -88,7 +98,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
-    public String updateProfile(@ModelAttribute User user, /*@RequestParam("name") String name,*/ @RequestParam("file") MultipartFile file, BindingResult bindingResult, Model model) throws MultipartException{
+    public String updateProfile(@ModelAttribute User user, /*@RequestParam("name") String name,*/ @RequestParam("file") MultipartFile file, BindingResult bindingResult, Model model) throws MultipartException {
         if (bindingResult.hasFieldErrors()) {
             return "redirect:/account/profile";
         }
@@ -126,8 +136,7 @@ public class UserController {
                         new FileOutputStream(new File(path)));
                 FileCopyUtils.copy(file.getInputStream(), stream);
                 stream.close();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
             }
         }
         try {
@@ -208,12 +217,97 @@ public class UserController {
         return user;
     }
 
-    @RequestMapping(value = "/forgot-password")
+    @RequestMapping(value = "/forget-password")
     public String getForgotPasswordPage() {
+
         return "forgot-password";
     }
 
-    @RequestMapping (value="/qr/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    @RequestMapping(value = "/forget-password", method = RequestMethod.POST)
+    public ResponseMessage doForgetPassword(@RequestBody Mail mail) {
+        // TODO: 15.04.16 need to do informative response
+
+        try {
+            User user = userService.getUser(mail.getMail());
+
+            Newsletter newsletter = new Newsletter(NewsletterConstants.MAIL,
+                    user.getUsername(),
+                    "Confirm changing?",
+                    NewsletterConstants.SUBJECT,
+                    NewsletterConstants.Contents.FORGET_PASSWORD_HTML
+            );
+
+            ResponseMessage responseMessage = newsletterService.sendMessage(newsletter);
+            System.out.println(responseMessage);
+
+            return responseMessage;
+        } catch (UserNotFoundException e) {
+            logger.error(e.getMessage());
+        }
+
+        List<Error> errors = new ArrayList<>();
+        errors.add(new Error("wrong e-mail"));
+
+        return new ResponseMessage("error", errors);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/profile/change-password", method = RequestMethod.POST)
+    public ResponseMessage doChangePassword(@RequestBody Passwords passwords) {
+        // TODO: 15.04.16 need to do informative response
+        System.out.println(passwords);
+
+        User user = getCurrentUser();
+        System.out.println(user);
+
+        if (user != null && passwords.getOldPassword().equals(user.getPassword())) {
+
+            Newsletter newsletter = new Newsletter(NewsletterConstants.MAIL,
+                    user.getUsername(),
+                    "Confirm changing?",
+                    NewsletterConstants.SUBJECT,
+                    NewsletterConstants.Contents.CHANGE_PASSWORD_HTML
+            );
+
+            ResponseMessage responseMessage = newsletterService.sendMessage(newsletter);
+            System.out.println(responseMessage);
+
+            return responseMessage;
+        }
+
+        List<Error> errors = new ArrayList<>();
+        errors.add(new Error("wrong e-mail"));
+
+        return new ResponseMessage("error", errors);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/profile/change-mail", method = RequestMethod.POST)
+    public ResponseMessage doChangeMail(@RequestBody Mail mail) {
+        User user = getCurrentUser();
+
+        if (user != null) {
+            Newsletter newsletter = new Newsletter(NewsletterConstants.MAIL,
+                    mail.getMail(),
+                    "Confirm changing?",
+                    NewsletterConstants.SUBJECT,
+                    NewsletterConstants.Contents.CHANGE_MAIL_HTML
+            );
+
+            ResponseMessage responseMessage = newsletterService.sendMessage(newsletter);
+            System.out.println(responseMessage);
+
+            return responseMessage;
+        }
+
+        List<Error> errors = new ArrayList<>();
+        errors.add(new Error("try again"));
+
+        return new ResponseMessage("error", errors);
+    }
+
+    @RequestMapping(value = "/qr/{id}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getQRImage(@PathVariable final String id) {
         byte[] bytes = getCurrentUser().getImagePath();
 
@@ -221,6 +315,6 @@ public class UserController {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_PNG);
 
-        return new ResponseEntity<byte[]> (bytes, headers, HttpStatus.CREATED);
+        return new ResponseEntity<byte[]>(bytes, headers, HttpStatus.CREATED);
     }
 }

@@ -10,7 +10,7 @@ import com.exeptions.RecordNotFoundException;
 import com.exeptions.UserNotFoundException;
 import com.models.Mail;
 import com.models.User;
-import com.services.UserService;
+import com.services.database.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

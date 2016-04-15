@@ -3,6 +3,8 @@ package com.entity.leadpage;
 import java.io.Serializable;
 
 /**
+ * <p>Lead ID Entity for the corresponding transformation in JSON.<p/>
+ *
  * @author Alexander Eveler
  */
 public class LeadId implements Serializable {
@@ -24,6 +26,22 @@ public class LeadId implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LeadId leadId = (LeadId) o;
+
+        return id != null ? id.equals(leadId.id) : leadId.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override

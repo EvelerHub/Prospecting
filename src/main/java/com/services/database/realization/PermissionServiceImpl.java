@@ -1,10 +1,10 @@
-package com.services.realization;
+package com.services.database.realization;
 
 import com.dao.PermissionDAO;
 import com.exeptions.DuplicatePermissionException;
 import com.exeptions.PermissionNotFoundException;
 import com.models.Permission;
-import com.services.PermissionService;
+import com.services.database.PermissionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

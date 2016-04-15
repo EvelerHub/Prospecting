@@ -4,7 +4,7 @@ import com.dao.UserDAO;
 import com.exeptions.DuplicateUserException;
 import com.exeptions.UserNotFoundException;
 import com.models.User;
-import com.services.PlanService;
+import com.services.database.PlanService;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

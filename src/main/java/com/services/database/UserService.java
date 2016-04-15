@@ -1,4 +1,4 @@
-package com.services;
+package com.services.database;
 
 import com.exeptions.DuplicateUserException;
 import com.exeptions.UserNotFoundException;

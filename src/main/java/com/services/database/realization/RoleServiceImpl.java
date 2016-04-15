@@ -1,10 +1,10 @@
-package com.services.realization;
+package com.services.database.realization;
 
 import com.dao.RoleDAO;
 import com.exeptions.DuplicateRoleException;
 import com.exeptions.RoleNotFoundException;
 import com.models.Role;
-import com.services.RoleService;
+import com.services.database.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

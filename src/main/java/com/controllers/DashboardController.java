@@ -2,7 +2,7 @@ package com.controllers;
 
 import com.exeptions.UserNotFoundException;
 import com.models.User;
-import com.services.UserService;
+import com.services.database.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;

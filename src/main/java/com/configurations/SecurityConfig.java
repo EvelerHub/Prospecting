@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 
 @Configuration
-@ComponentScan(basePackageClasses=com.services.realization.UserServiceImpl.class)
+@ComponentScan(basePackageClasses= com.services.database.realization.UserServiceImpl.class)
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

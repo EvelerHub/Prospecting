@@ -1,4 +1,4 @@
-package com.services;
+package com.services.database;
 
 import com.exeptions.DuplicateRoleException;
 import com.exeptions.RoleNotFoundException;

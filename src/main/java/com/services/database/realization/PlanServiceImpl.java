@@ -1,8 +1,8 @@
-package com.services.realization;
+package com.services.database.realization;
 
 import com.dao.PlanDAO;
 import com.models.Plan;
-import com.services.PlanService;
+import com.services.database.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
